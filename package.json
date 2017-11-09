@@ -1,11 +1,17 @@
 {
-  "name": "easy-storage",
+  "name": "syt-easy-storage",
   "version": "0.0.1",
-  "description": "",
-  "main": "./easy-storage.js",
+  "description": "Easy to use local-storage & session-storage, support types and timeout",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeoffZhu/easy-storage"
+  },
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
-    "build": "rollup --config rollup.config.js"
+    "build": "npm run build:package && npm run build:vue",
+    "build:package": "rollup --config rollup.config.js",
+    "build:vue": "rollup src/vue.js -f umd -n EasyStorage -o ./vue.js"
   },
   "author": "geoffzhu1992@gmail.com",
   "license": "MIT",
@@ -14,5 +20,13 @@
     "babel-preset-env": "^1.6.1",
     "rollup": "^0.51.1",
     "rollup-plugin-babel": "^3.0.2"
+  },
+  "keywords": [
+    "vue",
+    "easy-storage",
+    "vue-easy-storage"
+  ],
+  "bugs": {
+    "url": "https://github.com/GeoffZhu/easy-storage/issues"
   }
 }

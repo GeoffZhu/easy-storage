@@ -13,11 +13,10 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var DEFAULT = {
+  prefix: '_es_',
   type: 'local'
 };
-var types = ['local', 'session'];
-
-var engine = void 0;
+var TYPES = ['local', 'session'];
 
 var EasyStorage = function () {
   function EasyStorage() {
@@ -25,31 +24,43 @@ var EasyStorage = function () {
 
     _classCallCheck(this, EasyStorage);
 
-    if (~types.indexOf(options.type)) {
+    if (~TYPES.indexOf(options.type)) {
       this.type = options.type;
     } else {
       logger('Type option only support "local" & "session", use default "local".');
       this.type = DEFAULT.type;
     }
-    engine = window[this.type + 'Storage'];
+    this.prefix = options.prefix || DEFAULT.prefix;
+    this._engine = window[this.type + 'Storage'];
   }
 
   _createClass(EasyStorage, [{
     key: 'set',
     value: function set(key, value) {
-      engine.setItem(key, value);
+      this._engine.setItem(this.prefix + key, JSON.stringify(value));
     }
   }, {
     key: 'get',
     value: function get(key) {
-      engine.getItem(key);
+      var value = this._engine.getItem(this.prefix + key);
+      if (value) return JSON.parse(vlaue);else return null;
     }
   }, {
     key: 'remove',
-    value: function remove(key) {}
+    value: function remove(key) {
+      this._engine.removeItem(this.prefix + key);
+    }
   }, {
-    key: 'removeAll',
-    value: function removeAll() {}
+    key: 'clear',
+    value: function clear() {
+      var _this = this;
+
+      Object.keys(this._engine).forEach(function (name) {
+        if (key.indexOf(_this.prefix) === 0) {
+          _this._engine.removeItem(name);
+        }
+      });
+    }
   }]);
 
   return EasyStorage;
@@ -58,4 +69,3 @@ var EasyStorage = function () {
 return EasyStorage;
 
 })));
-//# sourceMappingURL=easy-storage.js.map

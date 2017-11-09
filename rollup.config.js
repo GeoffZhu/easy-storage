@@ -3,10 +3,9 @@ import babel from 'rollup-plugin-babel';
 export default {
   input: './src/index.js',
   output: {
-    file: './easy-storage.js',
+    file: './index.js',
     format: 'umd',
-    name: 'EasyStorage',
-    sourcemap: true
+    name: 'EasyStorage'
   },
   plugins: [
     babel({
