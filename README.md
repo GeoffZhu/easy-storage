@@ -17,7 +17,7 @@ Support String, Number, Array, Object.
 
 ### CDN
 ```html
-<script type="text/javascript" src="//unpkg.com/syt-easy-storage@0.0.2/index.js"></script>
+<script type="text/javascript" src="//unpkg.com/syt-easy-storage@0.0.3/index.js"></script>
 <script type="text/javascript">
   const es = new EasyStorage() // Default use localStorage, `new EasyStorage({type: 'session'})` for use sessionStorage
 </script>
@@ -34,6 +34,7 @@ npm install syt-easy-storage --save
 import EasyStorage 'syt-easy-storage'
 // commonjs
 const EasyStorage = require('syt-easy-storage')
+
 const es = new EasyStorage()
 ```
 
