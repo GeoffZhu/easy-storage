@@ -4,11 +4,22 @@
 
 ## Useage
 
+Support String, Number, Array, Object.
+
+| Function       | Example     |
+|-----------|-----------|
+| set | `es.set('key', value)` |
+| get | `es.get('key')` |
+| remove | `es.remove('key')` |
+| clear | `es.clear()` |
+
+## Installation
+
 ### CDN
 ```html
 <script type="text/javascript" src="//unpkg.com/syt-easy-storage@0.0.2/index.js"></script>
 <script type="text/javascript">
-  const es = new EasyStorage() // default use localStorage
+  const es = new EasyStorage() // Default use localStorage, `new EasyStorage({type: 'session'})` for use sessionStorage
 </script>
 ```
 
@@ -35,9 +46,9 @@ npm install syt-easy-storage --save
 ```javascript
 // entry.js
 import Vue from 'vue'
-import EasyStorage 'syt-easy-storage/vue'
-
-Vue.use(EasyStorage)
+import VueEasyStorage 'syt-easy-storage/vue'
+const easyStorage = new VueEasyStorage()
+Vue.use(easyStorage)
 
 // components file
 this.$es.set('key', value)

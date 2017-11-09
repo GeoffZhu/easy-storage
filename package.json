@@ -1,6 +1,6 @@
 {
   "name": "syt-easy-storage",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Easy to use local-storage & session-storage, support types and timeout",
   "main": "./index.js",
   "repository": {
