@@ -1,6 +1,6 @@
 {
   "name": "syt-easy-storage",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Easy to use local-storage & session-storage, support types and timeout",
   "main": "./index.js",
   "repository": {
@@ -11,7 +11,7 @@
     "dev": "rollup --config rollup.config.js -w",
     "build": "npm run build:package && npm run build:vue",
     "build:package": "rollup --config rollup.config.js",
-    "build:vue": "rollup src/vue.js -f umd -n EasyStorage -o ./vue.js"
+    "build:vue": "TARGET_ENV=vue rollup --config rollup.config.js"
   },
   "author": "geoffzhu1992@gmail.com",
   "license": "MIT",

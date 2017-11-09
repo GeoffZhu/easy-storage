@@ -1,21 +1,29 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
-	typeof define === 'function' && define.amd ? define(['exports'], factory) :
-	(factory((global.EasyStorage = {})));
-}(this, (function (exports) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.EasyStorage = factory());
+}(this, (function () { 'use strict';
 
-function logger (msg) {
-  console.warn(`EasyStorage: ${msg}`);
+function logger(msg) {
+  console.warn("EasyStorage: " + msg);
 }
 
-const DEFAULT = {
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var DEFAULT = {
   prefix: '_es_',
   type: 'local'
 };
-const TYPES = ['local', 'session'];
+var TYPES = ['local', 'session'];
 
-class EasyStorage {
-  constructor (options = {}) {
+var EasyStorage = function () {
+  function EasyStorage() {
+    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+    _classCallCheck(this, EasyStorage);
+
     if (~TYPES.indexOf(options.type)) {
       this.type = options.type;
     } else {
@@ -23,38 +31,45 @@ class EasyStorage {
       this.type = DEFAULT.type;
     }
     this.prefix = options.prefix || DEFAULT.prefix;
-    this._engine = window[`${this.type}Storage`];
+    this._engine = window[this.type + 'Storage'];
   }
 
-  set (key, value) {
-    this._engine.setItem(this.prefix + key, JSON.stringify(value));
-  }
+  _createClass(EasyStorage, [{
+    key: 'set',
+    value: function set(key, value) {
+      this._engine.setItem(this.prefix + key, JSON.stringify(value));
+    }
+  }, {
+    key: 'get',
+    value: function get(key) {
+      var value = this._engine.getItem(this.prefix + key);
+      if (value) return JSON.parse(vlaue);else return null;
+    }
+  }, {
+    key: 'remove',
+    value: function remove(key) {
+      this._engine.removeItem(this.prefix + key);
+    }
+  }, {
+    key: 'clear',
+    value: function clear() {
+      var _this = this;
 
-  get (key) {
-    let value = this._engine.getItem(this.prefix + key);
-    if (value) return JSON.parse(vlaue)
-    else return null
-  }
+      Object.keys(this._engine).forEach(function (name) {
+        if (key.indexOf(_this.prefix) === 0) {
+          _this._engine.removeItem(name);
+        }
+      });
+    }
+  }]);
 
-  remove (key) {
-    this._engine.removeItem(this.prefix + key);
-  }
+  return EasyStorage;
+}();
 
-  clear () {
-    Object.keys(this._engine).forEach((name) => {
-      if (key.indexOf(this.prefix) === 0) {
-        this._engine.removeItem(name);
-      }
-    });
-  }
-}
-
-function install (Vue, options) {
+function install(Vue, options) {
   Vue.prototype.$es = new EasyStorage(options);
 }
 
-exports.install = install;
-
-Object.defineProperty(exports, '__esModule', { value: true });
+return install;
 
 })));

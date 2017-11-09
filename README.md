@@ -6,7 +6,7 @@
 
 ### CDN
 ```html
-<script type="text/javascript" src="//unpkg.com/easy-storage/easy-storage.js"></script>
+<script type="text/javascript" src="//unpkg.com/syt-easy-storage@0.0.2/index.js"></script>
 <script type="text/javascript">
   const es = new EasyStorage() // default use localStorage
 </script>

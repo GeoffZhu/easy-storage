@@ -1,6 +1,6 @@
 import babel from 'rollup-plugin-babel';
 
-export default {
+const config = {
   input: './src/index.js',
   output: {
     file: './index.js',
@@ -13,3 +13,10 @@ export default {
     })
   ]
 };
+
+if (process.env.TARGET_ENV === 'vue') {
+  config.input = './src/vue.js'
+  config.output.file = './vue.js'
+}
+
+export default config
