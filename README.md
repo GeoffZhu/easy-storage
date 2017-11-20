@@ -4,14 +4,16 @@
 
 ## Useage
 
-Support String, Number, Array, Object.
+Support String, Number, Array, Object. 
 
 | Function       | Example     |
 |-----------|-----------|
-| set | `es.set('key', value)` |
+| set | `es.set('key', value, timeStamp` |
 | get | `es.get('key')` |
 | remove | `es.remove('key')` |
 | clear | `es.clear()` |
+
+Function `set` have a param `timeStamp`, unit is `ms`.
 
 ## Installation
 
@@ -45,10 +47,14 @@ npm install syt-easy-storage --save
 ```
 
 ```javascript
-// entry.js
-import Vue from 'vue'
+// plagin.js
 import VueEasyStorage 'syt-easy-storage/vue'
 const easyStorage = new VueEasyStorage()
+export default easyStorage
+
+// entry.js
+import Vue from 'vue'
+import easyStorage 'path/of/plagin.js'
 Vue.use(easyStorage)
 
 // components file
