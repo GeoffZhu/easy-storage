@@ -47,18 +47,19 @@ npm install syt-easy-storage --save
 ```
 
 ```javascript
-// plagin.js
+// plugin.js
 import VueEasyStorage 'syt-easy-storage/vue'
 const easyStorage = new VueEasyStorage()
 export default easyStorage
 
 // entry.js
 import Vue from 'vue'
-import easyStorage 'path/of/plagin.js'
+import easyStorage 'path/of/plugin.js'
 Vue.use(easyStorage)
 
 // components file
 this.$es.set('key', value)
+this.$es.set('key', value, 24*60*60*1000)
 this.$es.get('key')
 
 ```
